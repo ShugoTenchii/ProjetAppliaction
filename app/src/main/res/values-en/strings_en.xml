@@ -2,4 +2,8 @@
 <resources>
     <string name="bouton_calculer">Compute</string>
     <string name="bouton_derniere_operation">Last Compute</string>
+    <string name="bouton_precedent">Previous</string>
+    <string name="toolbar_calculer">Compute</string>
+    <string name="toolbar_nettoyer">Clear</string>
+
 </resources>

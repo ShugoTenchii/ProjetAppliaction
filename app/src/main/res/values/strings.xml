@@ -16,6 +16,9 @@
     <string name="bouton_divide" translatable="false">/</string>
     <string name="bouton_multiply" translatable="false">*</string>
     <string name="bouton_add" translatable="false">+</string>
-    <string name="bouton_add">+</string>
-    <string name="bouton_substract">-</string>
+    <string name="bouton_precedent">Précédent</string>
+    <string name="toolbar_calculer">Calculer</string>
+    <string name="toolbar_nettoyer">Nettoyer</string>
+
+
 </resources>

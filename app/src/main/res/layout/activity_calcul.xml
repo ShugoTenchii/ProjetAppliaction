@@ -32,7 +32,7 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/boutonCalculer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
@@ -40,7 +40,7 @@
                 android:text="@string/bouton_add" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/boutonDernierCalcul"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
