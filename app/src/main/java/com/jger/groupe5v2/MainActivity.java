@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,8 +12,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button boutonCalculer = findViewById(R.id.boutonCalculer);
-        Button boutonDernierCalcul = findViewById(R.id.boutonDernierCalcul);
+        Button boutonCalculer = findViewById(R.id.button_add);
+        Button boutonDernierCalcul = findViewById(R.id.button_substract);
         boutonCalculer.setOnClickListener(view -> lancerActivityCalcul());
         boutonDernierCalcul.setOnClickListener(view -> lancerActivityDernierCalcul());
 
