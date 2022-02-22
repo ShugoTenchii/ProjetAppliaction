@@ -1,4 +1,4 @@
-package com.jger.groupe5v2;
+package com.jger.groupe5v2.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,10 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.jger.groupe5v2.model.exception.DivideException;
+import com.jger.groupe5v2.R;
+import com.jger.groupe5v2.model.TypeOperationEnum;
 
 public class CalculActivity extends AppCompatActivity {
     Integer premierElement = 0;

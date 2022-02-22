@@ -1,10 +1,14 @@
-package com.jger.groupe5v2;
+package com.jger.groupe5v2.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+
+import com.jger.groupe5v2.R;
+import com.jger.groupe5v2.view.CalculActivity;
+import com.jger.groupe5v2.view.LastComputeActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,12 +24,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void lancerActivityDernierCalcul() {
-        Intent intent = new Intent(this,LastComputeActivity.class);
+        Intent intent = new Intent(this, LastComputeActivity.class);
         startActivity(intent);
     }
 
     private void lancerActivityCalcul() {
-        Intent intent = new Intent(this,CalculActivity.class);
+        Intent intent = new Intent(this, CalculActivity.class);
         startActivity(intent);
     }
 }

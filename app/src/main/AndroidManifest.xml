@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Groupe5v2">
         <activity
-            android:name=".LastComputeActivity"
+            android:name=".view.LastComputeActivity"
             android:exported="false" />
         <activity
-            android:name=".CalculActivity"
+            android:name=".view.CalculActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

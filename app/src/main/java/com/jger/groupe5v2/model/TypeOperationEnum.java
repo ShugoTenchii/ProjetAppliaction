@@ -1,4 +1,4 @@
-package com.jger.groupe5v2;
+package com.jger.groupe5v2.model;
 
 public enum TypeOperationEnum {
     ADD("+"),

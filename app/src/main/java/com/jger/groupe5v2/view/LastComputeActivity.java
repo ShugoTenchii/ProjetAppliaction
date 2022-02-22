@@ -1,4 +1,4 @@
-package com.jger.groupe5v2;
+package com.jger.groupe5v2.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.jger.groupe5v2.R;
 
 public class LastComputeActivity extends AppCompatActivity {
 
