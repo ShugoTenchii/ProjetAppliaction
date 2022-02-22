@@ -9,12 +9,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CalculActivity extends AppCompatActivity {
     Integer premierElement = 0;
     Integer deuxiemeElement = 0;
     TypeOperationEnum typeOperation = null;
     TextView textViewCalcul;
+    Integer BORNE_HAUTE = 9999;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,31 +43,53 @@ public class CalculActivity extends AppCompatActivity {
         button9.setOnClickListener(view -> ajouterNombre(9));
         Button button0 = findViewById(R.id.button_0);
         button0.setOnClickListener(view -> ajouterNombre(0));
+        Button boutonAdd = findViewById(R.id.button_add);
+        boutonAdd.setOnClickListener(view -> ajouterSymbol(TypeOperationEnum.ADD));
+        Button boutonSubstract = findViewById(R.id.button_substract);
+        boutonSubstract.setOnClickListener(view -> ajouterSymbol(TypeOperationEnum.SUBSTRACT));
+        Button boutonDivide = findViewById(R.id.button_divide);
+        boutonDivide.setOnClickListener(view -> ajouterSymbol(TypeOperationEnum.DIVIDE));
+        Button boutonMultiply = findViewById(R.id.button_multiply);
+        boutonMultiply.setOnClickListener(view -> ajouterSymbol(TypeOperationEnum.MULTIPLY));
+
     }
 
-    public void ajouterNombre(Integer valeur){
-        if(typeOperation == null){
-            premierElement= 10*premierElement+valeur;
-        }else{
-            deuxiemeElement= 10*deuxiemeElement+valeur;
+    private void ajouterSymbol(TypeOperationEnum typeOperation) {
+        this.typeOperation = typeOperation;
+        majText();
+    }
+
+    public void ajouterNombre(Integer valeur) {
+        if (typeOperation == null) {
+            if (10 * premierElement + valeur > BORNE_HAUTE) {
+                Toast.makeText(this, getString(R.string.ERROR_VALEUR_TROP_GRANDE), Toast.LENGTH_LONG).show();
+            } else {
+                premierElement = 10 * premierElement + valeur;
+            }
+        } else {
+            if (10 * deuxiemeElement + valeur > BORNE_HAUTE) {
+                Toast.makeText(this, getString(R.string.ERROR_VALEUR_TROP_GRANDE), Toast.LENGTH_LONG).show();
+            } else {
+                deuxiemeElement = 10 * deuxiemeElement + valeur;
+            }
         }
         majText();
     }
 
     private void majText() {
-        String textAAfficher="";
-        if(typeOperation==null){
-            textAAfficher=premierElement.toString();
-        }else{
-            textAAfficher = premierElement +" "+typeOperation.getSymbol()+" "+deuxiemeElement;
+        String textAAfficher = "";
+        if (typeOperation == null) {
+            textAAfficher = premierElement.toString();
+        } else {
+            textAAfficher = premierElement + " " + typeOperation.getSymbol() + " " + deuxiemeElement;
         }
         textViewCalcul.setText(textAAfficher);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater =  getMenuInflater();
-        inflater.inflate(R.menu.toolbar,menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar, menu);
         MenuItem boutonCalculer = menu.findItem(R.id.toolbarCaculer);
         MenuItem boutonVider = menu.findItem(R.id.toolbarNettoyer);
         boutonVider.setOnMenuItemClickListener(menuItem -> videTextViewCalcul());
@@ -77,12 +101,43 @@ public class CalculActivity extends AppCompatActivity {
     private boolean videTextViewCalcul() {
         TextView textViewCalcul = findViewById(R.id.textviewCalcul);
         textViewCalcul.setText("");
+        premierElement = 0;
+        deuxiemeElement = 0;
+        typeOperation = null;
         return true;
     }
 
+    private Integer faisLeCalcul() throws DivideException {
+            switch (typeOperation) {
+                case ADD:
+                    return premierElement + deuxiemeElement;
+                case DIVIDE:
+                    if (deuxiemeElement != 0) {
+                        return premierElement / deuxiemeElement;
+                    } else {
+                        throw new DivideException();
+                    }
+
+                case SUBSTRACT:
+                    return premierElement - deuxiemeElement;
+                case MULTIPLY:
+                    return premierElement * deuxiemeElement;
+            }
+            return 0;
+    }
+
     private boolean ouvrirDernierCalcul() {
-        Intent intent = new Intent(this,LastComputeActivity.class);
-        startActivity(intent);
+        try{
+            Intent intent = new Intent(this, LastComputeActivity.class);
+            intent.putExtra("premierElement", premierElement);
+            intent.putExtra("deuxiemeElement", deuxiemeElement);
+            intent.putExtra("symbol", typeOperation.getSymbol());
+            intent.putExtra("resultat", faisLeCalcul());
+            startActivity(intent);
+        }catch (DivideException e){
+            Toast.makeText(this,getString(R.string.ERROR_DIVISION_ZERO),Toast.LENGTH_LONG).show();
+        }
+
         return true;
     }
 }

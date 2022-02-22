@@ -19,6 +19,8 @@
     <string name="bouton_precedent">Précédent</string>
     <string name="toolbar_calculer">Calculer</string>
     <string name="toolbar_nettoyer">Nettoyer</string>
+    <string name="ERROR_VALEUR_TROP_GRANDE">Valeur trop grande</string>
+    <string name="ERROR_DIVISION_ZERO">Division par zero</string>
 
 
 </resources>
