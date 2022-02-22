@@ -1,10 +1,10 @@
-package com.jger.groupe4.database;
+package com.jger.groupe5v2.controller;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.jger.groupe4.model.Entities.BaseEntity;
+import com.jger.groupe5v2.model.BaseEntity;
 
 import java.util.ArrayList;
 import java.util.List;

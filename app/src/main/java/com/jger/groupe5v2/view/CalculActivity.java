@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jger.groupe5v2.controller.CalculBaseHelper;
+import com.jger.groupe5v2.controller.CalculDao;
+import com.jger.groupe5v2.controller.CalculService;
+import com.jger.groupe5v2.model.Calcul;
 import com.jger.groupe5v2.model.exception.DivideException;
 import com.jger.groupe5v2.R;
 import com.jger.groupe5v2.model.TypeOperationEnum;
@@ -21,11 +25,13 @@ public class CalculActivity extends AppCompatActivity {
     TypeOperationEnum typeOperation = null;
     TextView textViewCalcul;
     Integer BORNE_HAUTE = 9999;
+    CalculService calculService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calcul);
+        calculService = new CalculService(new CalculDao(new CalculBaseHelper(this)));
         textViewCalcul = findViewById(R.id.textviewCalcul);
         Button button1 = findViewById(R.id.button_1);
         button1.setOnClickListener(view -> ajouterNombre(1));
@@ -137,6 +143,12 @@ public class CalculActivity extends AppCompatActivity {
             intent.putExtra("deuxiemeElement", deuxiemeElement);
             intent.putExtra("symbol", typeOperation.getSymbol());
             intent.putExtra("resultat", faisLeCalcul());
+            Calcul calcul = new Calcul();
+            calcul.setPremierElement(premierElement);
+            calcul.setDeuxiemeElement(deuxiemeElement);
+            calcul.setSymbol(typeOperation.getSymbol());
+            calcul.setResultat(faisLeCalcul());
+            calculService.storeInDB(calcul);
             startActivity(intent);
         }catch (DivideException e){
             Toast.makeText(this,getString(R.string.ERROR_DIVISION_ZERO),Toast.LENGTH_LONG).show();

@@ -9,14 +9,21 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.jger.groupe5v2.R;
+import com.jger.groupe5v2.controller.CalculBaseHelper;
+import com.jger.groupe5v2.controller.CalculDao;
+import com.jger.groupe5v2.controller.CalculService;
 
 public class LastComputeActivity extends AppCompatActivity {
+    private CalculService calculService;
 
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_last_compute);
+        calculService = new CalculService(new CalculDao(new CalculBaseHelper(this)));
+        TextView nombreCalcul = findViewById(R.id.lastCompute_nombreCalcul);
+        nombreCalcul.setText("Il y a "+calculService.getComputeCount()+" calculs dans ma base");
         Button boutonPrecedent = findViewById(R.id.boutonPrecedent);
         TextView textViewCalcul = findViewById(R.id.lastCompute_textViewCalcul);
         boutonPrecedent.setOnClickListener(view -> finish());
