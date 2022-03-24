@@ -27,5 +27,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/bouton_derniere_operation" />
+
+        <Button
+            android:id="@+id/ButtonQuiz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/quiz" />
+
+        <Button
+            android:id="@+id/buttonResultatQuiz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/resultat" />
+
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
