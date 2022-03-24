@@ -9,8 +9,7 @@ import android.widget.TextView;
 
 import com.jger.groupe5v2.R;
 import com.jger.groupe5v2.controller.CalculService;
-import com.jger.groupe5v2.model.TypeOperationEnum;
-import com.jger.groupe5v2.model.exception.DivideException;
+import com.jger.groupe5v2.models.TypeOperationEnum;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,14 +25,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button boutonCalculer = findViewById(R.id.button_add);
-        Button boutonDernierCalcul = findViewById(R.id.button_substract);
+        Button boutonCalculer = findViewById(R.id.score_view_menu_button);
+        Button boutonDernierCalcul = findViewById(R.id.button_last_calcul);
         Button bontonQuiz = findViewById(R.id.ButtonQuiz);
         Button bontonResultatQuizz = findViewById(R.id.buttonResultatQuiz);
+
         boutonCalculer.setOnClickListener(view -> lancerActivityCalcul());
-        bontonQuiz.setOnClickListener(view -> majText());
         boutonDernierCalcul.setOnClickListener(view -> lancerActivityDernierCalcul());
-        bontonQuiz.setOnClickListener(view -> lancerActivityQuizz());
+        bontonQuiz.setOnClickListener(view -> lancerQuizActivity());
+        bontonResultatQuizz.setOnClickListener(view -> lancerDernierQuiz());
 
 
     }
@@ -73,14 +73,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void lancerActivityQuizz() {
-        Intent intent = new Intent(this, CalculActivity.class);
+    private void lancerQuizActivity(){
+        Intent intent = new Intent(this, MentalActivity.class);
         startActivity(intent);
     }
 
-    /*private void lancerActivityResultat() {
-        Intent intent = new Intent(this, CalculActivity.class);
+    private void lancerDernierQuiz(){
+        Intent intent = new Intent(this, ScoreActivity.class);
         startActivity(intent);
-    }*/
+    }
 
 }

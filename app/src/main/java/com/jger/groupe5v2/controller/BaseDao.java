@@ -4,7 +4,8 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.jger.groupe5v2.model.BaseEntity;
+import com.jger.groupe5v2.models.BaseEntity;
+import com.jger.groupe5v2.models.BaseEntity;
 
 import java.util.ArrayList;
 import java.util.List;

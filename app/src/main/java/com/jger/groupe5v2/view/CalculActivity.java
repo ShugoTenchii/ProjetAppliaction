@@ -14,10 +14,10 @@ import android.widget.Toast;
 import com.jger.groupe5v2.controller.CalculBaseHelper;
 import com.jger.groupe5v2.controller.CalculDao;
 import com.jger.groupe5v2.controller.CalculService;
-import com.jger.groupe5v2.model.Calcul;
-import com.jger.groupe5v2.model.exception.DivideException;
+import com.jger.groupe5v2.models.Calcul;
+import com.jger.groupe5v2.models.exception.DivideException;
 import com.jger.groupe5v2.R;
-import com.jger.groupe5v2.model.TypeOperationEnum;
+import com.jger.groupe5v2.models.TypeOperationEnum;
 
 public class CalculActivity extends AppCompatActivity {
     Integer premierElement = 0;
@@ -53,9 +53,9 @@ public class CalculActivity extends AppCompatActivity {
         button9.setOnClickListener(view -> ajouterNombre(9));
         Button button0 = findViewById(R.id.button_0_quiz);
         button0.setOnClickListener(view -> ajouterNombre(0));
-        Button boutonAdd = findViewById(R.id.button_add);
+        Button boutonAdd = findViewById(R.id.score_view_menu_button);
         boutonAdd.setOnClickListener(view -> ajouterSymbol(TypeOperationEnum.ADD));
-        Button boutonSubstract = findViewById(R.id.button_substract);
+        Button boutonSubstract = findViewById(R.id.button_last_calcul);
         boutonSubstract.setOnClickListener(view -> ajouterSymbol(TypeOperationEnum.SUBSTRACT));
         Button boutonDivide = findViewById(R.id.button_divide);
         boutonDivide.setOnClickListener(view -> ajouterSymbol(TypeOperationEnum.DIVIDE));
@@ -135,6 +135,8 @@ public class CalculActivity extends AppCompatActivity {
             }
             return 0;
     }
+
+
 
     private boolean ouvrirDernierCalcul() {
         try{

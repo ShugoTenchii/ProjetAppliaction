@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/score_view_menu_button"
+        android:title="@string/score_view"
+        app:showAsAction="always" />
+    <item android:title="@string/reset" />
+</menu>

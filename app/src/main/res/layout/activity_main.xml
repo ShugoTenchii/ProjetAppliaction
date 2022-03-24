@@ -17,13 +17,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/button_add"
+            android:id="@+id/score_view_menu_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/bouton_calculer" />
 
         <Button
-            android:id="@+id/button_substract"
+            android:id="@+id/button_last_calcul"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/bouton_derniere_operation" />

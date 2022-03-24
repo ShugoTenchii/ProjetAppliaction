@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name" translatable="false">MentalCompute</string>
+
+    <!-- Main Activity -->
+    <string name="play">Jouer</string>
+    <!-- <string name="score_view">View scores</string> -->
+
+    <!-- Mental Activity -->
+    <string name="correct">Correcte</string>
+    <string name="incorrect">Incorrecte</string>
+    <string name="skip">Opération passé</string>
+    <string name="answer">Réponse : %1$d</string>
+    <string name="validate">Valider</string>
+    <string name="operation_template" translatable="false">%1$d %2$s %3$d</string>
+
+    <!-- Score Activity-->
+    <string name="operations_count_label">Nombre d\'opération :</string>
+    <string name="accuracy_label">Précision :</string>
+    <string name="last_operation_label">Le dernier calcul est :</string>
+    <string name="retry">Réessaye</string>
+    <string name="previous">Précédent</string>
+
+    <!-- Score view menu -->
+    <string name="score_view">Voir Score</string>
+    <string name="reset">Reset Score</string>
+
+    <!-- Calculatrice -->
+    <string name="ERROR_VALEUR_TROP_GRANDE">La valeur est trop grande</string>
+    <string name="ERROR_DIVISION_ZERO">Le nombre ne peut être divisble par 0</string>
+    <string name="bouton_add">plus</string>
+    <string name="bouton_substract">moins</string>
+    <string name="bouton_precedent">précédent</string>
+    <string name="bouton_calculer">calculer</string>
+    <string name="bouton_derniere_operation">Dernière opération</string>
+    <string name="quiz">Quizz</string>
+    <string name="resultat">resultat</string>
+    <string name="toolbar_nettoyer">Effacer</string>
+    <string name="toolbar_calculer">Calculer</string>
+    <string name="BackToHome">Retourner au menu</string>
+
+</resources>

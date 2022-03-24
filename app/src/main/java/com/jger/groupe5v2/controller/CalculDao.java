@@ -3,8 +3,8 @@ package com.jger.groupe5v2.controller;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-import com.jger.groupe5v2.model.BaseEntity;
-import com.jger.groupe5v2.model.Calcul;
+import com.jger.groupe5v2.models.BaseEntity;
+import com.jger.groupe5v2.models.Calcul;
 
 public class CalculDao extends BaseDao<Calcul> {
     static String clePremierElement = "premierElement";

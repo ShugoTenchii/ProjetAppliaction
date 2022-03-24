@@ -1,6 +1,6 @@
 package com.jger.groupe5v2.controller;
 
-import com.jger.groupe5v2.model.Calcul;
+import com.jger.groupe5v2.models.Calcul;
 
 public class CalculService {
     private CalculDao calculDao;

@@ -1,4 +1,4 @@
-package com.jger.groupe5v2.model;
+package com.jger.groupe5v2.models;
 
 public class Calcul extends BaseEntity {
     Integer premierElement;

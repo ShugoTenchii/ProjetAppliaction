@@ -16,6 +16,12 @@
             android:name=".view.CalculActivity"
             android:exported="false" />
         <activity
+            android:name=".view.ScoreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.MentalActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
