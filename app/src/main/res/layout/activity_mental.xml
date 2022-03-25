@@ -104,5 +104,11 @@
             android:layout_height="wrap_content"
             android:minHeight="100dp" />
 
+        <TextView
+            android:id="@+id/LifeId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/number_of_life" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

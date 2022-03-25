@@ -5,6 +5,7 @@ import static java.lang.Thread.sleep;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,11 +16,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.jger.groupe5v2.R;
+import com.jger.groupe5v2.controller.CalculService;
+import com.jger.groupe5v2.models.Calcul;
 import com.jger.groupe5v2.models.TypeOperationEnum;
 import com.jger.groupe5v2.models.OperationModel;
+import com.jger.groupe5v2.models.exception.DivideException;
 import com.jger.groupe5v2.services.OperationsGeneratorService;
 
 import com.jger.groupe5v2.models.exception.NoAnswerException;
@@ -29,11 +34,12 @@ import com.jger.groupe5v2.services.ResolutionService;
 
 public class MentalActivity extends AppCompatActivity {
 
-    private static int _answer;
+    private int _answer;
     private TextView operationText;
     private int _number1;
     private int _number2;
     private TypeOperationEnum _typeOperation;
+    private int result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +47,12 @@ public class MentalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mental);
 
         try {
-            sleep(3000);
+            sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        Integer life = 3;
 
         operationText = findViewById(R.id.operation_text);
         Button home_image_button = findViewById(R.id.home_image_button);
@@ -53,6 +61,7 @@ public class MentalActivity extends AppCompatActivity {
         TextView incorrectTV = findViewById(R.id.incorrect_text);
         TextView skipTV = findViewById(R.id.skip_text);
         TextView answerTV = findViewById(R.id.answer_text);
+        TextView Life = findViewById(R.id.LifeId);
         Button validButton =  findViewById(R.id.valid_button);
 
         OperationsGeneratorService calculator = new OperationsGeneratorService();
@@ -60,7 +69,10 @@ public class MentalActivity extends AppCompatActivity {
 
         home_image_button.setOnClickListener(view -> goToPreviousActivity());
         editText.requestFocus();
-        validButton.setOnClickListener(view -> Answer(editText, home_image_button, validButton, editText.getText().toString(), operationG, correctTV, incorrectTV, skipTV, answerTV));
+        validButton.setOnClickListener(view -> Answer(editText, home_image_button, validButton, editText.getText().toString(), operationG, correctTV, incorrectTV, skipTV, answerTV,life, Life));
+
+
+
 
         setAttributes(operationG);
     }
@@ -69,6 +81,8 @@ public class MentalActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.score_view_menu, menu);
+        MenuItem voirScore = menu.findItem(R.id.score_view_menu_button);
+        voirScore.setOnMenuItemClickListener( menuItem->ouvrirDernierQuizz());
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -109,7 +123,7 @@ public class MentalActivity extends AppCompatActivity {
         displayOperation();
     }
 
-    private void Answer(EditText answerZone, Button iB, Button b, String proposedAnswer, OperationModel opModel, TextView cTV, TextView iTV, TextView sTV, TextView aTV) {
+    private void Answer(EditText answerZone, Button iB, Button b, String proposedAnswer, OperationModel opModel, TextView cTV, TextView iTV, TextView sTV, TextView aTV, Integer life, TextView Life) {
         Intent intent = new Intent(this, MentalActivity.class);
         startActivity(intent);
 
@@ -118,8 +132,9 @@ public class MentalActivity extends AppCompatActivity {
         b.setVisibility(View.GONE);
 
         ResolutionService answer = new ResolutionService();
-        int result = answer.compute(opModel);
-
+        result = answer.compute(opModel);
+        String text2 = R.string.number_of_life + ": " + life.toString();
+        Life.setText(text2);
         try {
             answer.CorrectAnswer(proposedAnswer, opModel);
             cTV.setVisibility(View.VISIBLE);
@@ -129,6 +144,10 @@ public class MentalActivity extends AppCompatActivity {
             aTV.setVisibility(View.VISIBLE);
             sTV.setVisibility(View.VISIBLE);
         } catch (WrongAnswerException e) {
+            life = life - 1;
+            if(life<=0){
+                goToPreviousActivity();
+            }
             String text = getString(R.string.answer, result);
             aTV.setText(text);
             aTV.setVisibility(View.VISIBLE);
@@ -162,11 +181,31 @@ public class MentalActivity extends AppCompatActivity {
         this._typeOperation = typeOperation;
     }
 
-    public static int getAnswer() {
+    public int getAnswer() {
         return _answer;
     }
 
+    public int getResult() {
+        return result;
+    }
+
     private void setAnswer(int result) {
-        this._answer = result;
+        _answer = result;
+    }
+
+    private boolean ouvrirDernierQuizz() {
+        Intent intent = new Intent(this, ScoreActivity.class);
+        intent.putExtra("premierElement", getNumber1());
+        intent.putExtra("deuxiemeElement", getNumber2());
+        intent.putExtra("symbol", getTypeOperator());
+        intent.putExtra("resultat",getResult());
+        Calcul calcul = new Calcul();
+        calcul.setPremierElement(getNumber1());
+        calcul.setDeuxiemeElement(getNumber2());
+        calcul.setSymbol(getTypeOperator().toString());
+        calcul.setResultat(getAnswer());
+        startActivity(intent);
+
+        return true;
     }
 }

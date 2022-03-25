@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ScoreActivity">
+    tools:context=".view.ScoreActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,9 +33,9 @@
             android:id="@+id/previous_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/btn_color"
+            android:backgroundTint="@color/purple_700"
             android:text="@string/previous"
-            android:textColor="@color/txt_color" />
+            android:textColor="@color/white" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

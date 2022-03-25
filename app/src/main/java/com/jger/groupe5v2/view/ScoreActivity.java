@@ -2,6 +2,7 @@ package com.jger.groupe5v2.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -17,12 +18,11 @@ public class ScoreActivity extends AppCompatActivity {
     public final static String TYPE_OPERATOR_KEY = "TYPE_OPERATOR";
     public final static String ANSWER_KEY = "ANSWER";
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
-
-        TextView lastOperationTV = findViewById(R.id.last_operation_text);
 
         Intent intent = getIntent();
         int number1 = intent.getIntExtra(NUMBER1_KEY, 0);
@@ -37,13 +37,16 @@ public class ScoreActivity extends AppCompatActivity {
         TextView precision = findViewById(R.id.textView_Precision);
         TextView calculEtDernier = findViewById(R.id.last_operation_text);
 
-        nombreOperation.setText(R.string.operations_count_label + Integer.toString(MentalActivity.getAnswer()));
-
-
-
+        System.out.println("test     : " + intent.getIntExtra("resultat",0));
+        if( intent.getIntExtra("resultat",0)!= 0){
+            nombreOperation.setText(R.string.operations_count_label );
+        }else{
+            nombreOperation.setText(R.string.operations_count_label);
+        }
     }
 
     private void goToPreviousActivity() {
         finish();
     }
 }
+

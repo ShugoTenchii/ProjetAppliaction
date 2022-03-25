@@ -37,5 +37,6 @@
     <string name="toolbar_nettoyer">Effacer</string>
     <string name="toolbar_calculer">Calculer</string>
     <string name="BackToHome">Retourner au menu</string>
+    <string name="number_of_life">Nombre de vie: </string>
 
 </resources>
